@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <link rel="stylesheet" href="css/reset.css" type="text/css">
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <ul>
+            <li class="active">新闻</li>
+            <li>社会</li>
+            <li>军事</li>
+            <li>话题</li>
+        </ul>
+    </div>
+    <div class="content">
+        <ul>
+            <li>葛优和张国立同时落水先救谁？<span></span></li>
+            <li>摩拜与ofo为何如此之快进入肉搏战？<span></span></li>
+            <li>环保部：28市被确定为京津冀大气污染传输通道<span></span></li>
+            <li>国家旅游局发布赴韩提醒：望国人慎重选择旅行地<span></span></li>
+            <li>
+                <div class="bottom"><a href="javascript:void (0)">进入新闻中心>></a></div>
+            </li>
+        </ul>
+        <ul>
+            <li>视频丨醉汉赖已婚女同学衣柜 男主人报警<span></span></li>
+            <li>饮水机火锅弱爆了！妹子这次在办公室针织方便面<span></span></li>
+            <li>男子一次定下20套房 被家人送至脑科医院<span></span></li>
+            <li>妻子发了句我爱你 老公吓得跑派出所<span></span></li>
+            <li>
+                <div class="bottom"><a href="javascript:void (0)">进入社会>></a></div>
+            </li>
+        </ul>
+        <ul>
+            <li>日拟派F15战机常驻下地岛机场<span></span></li>
+            <li>特朗普上任后第一仗惨败：士兵阵亡<span></span></li>
+            <li>一套萨德毁掉全部汉江奇迹：韩国把自己玩到<span></span></li>
+            <li>英媒：中国对萨德警告让人想起朝鲜战争时期<span></span></li>
+            <li>
+                <div class="bottom"><a href="javascript:void (0)">进入军事频道>></a></div>
+            </li>
+        </ul>
+        <ul>
+            <li>谭咏麟:坠物竟是我行李<span></span></li>
+            <li>南方如何温暖度过寒冷冬天？<span></span></li>
+            <li>热火连续6个客场之旅注定不顺利<span></span></li>
+            <li>詹姆斯空中接力上篮，热火以18-12领先<span></span></li>
+            <li>
+                <div class="bottom"><a href="javascript:void (0)">进入话题></a></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/rem.js"></script>
+<script src="js/zepto.js"></script>
+<script src="js/touch.js"></script>
+<script type="text/javascript">
+
+    Zepto(function ($) {
+
+        var moveLeft = $(window).width();
+
+
+        $(".header>ul li").tap(function () {
+              var index = $(this).index();
+               console.log(index);
+                $(".content>ul").css({
+
+                    "transform": "translate(" + (-moveLeft * index) + "px)",
+                    "transition": "all 2s"
+                });
+
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+
+
+        $(".content>ul").swipeLeft(function () {
+            var index = $(this).index();
+            console.log(index);
+            index++;
+            $(".header>ul li").eq(index).addClass("active").siblings().removeClass("active");
+            if (index <= 3) {
+                $(".content>ul").css({
+
+                    "transform": "translate(" + (-moveLeft * index) + "px)",
+                    "transition": "all 2s"
+                });
+            } else {
+                return;
+            }
+
+                console.log(-moveLeft * index);
+
+                /*   $(".content").width($(".content>ul").width()*$(".content>ul").length);
+                 $(".content ul").width($(".header").width());*/
+
+            });
+
+
+
+       $(".content>ul").swipeRight(function () {
+            var index = $(this).index();
+            console.log(index);
+            index--;
+            console.log(index);
+            if (index!=-1) {
+
+                $(".header>ul li").eq(index).addClass("active").siblings().removeClass("active");
+
+                $(".content>ul").css({
+
+                     "transform": "translate(" + (-moveLeft * index) + "px)",
+                     "transition": "all 2s"
+                });
+            } else {
+               return;
+            }
+
+           console.log(-moveLeft * index);
+        });
+
+
+    });
+
+
+</script>
+</body>
+</html>
